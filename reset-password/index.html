@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>إعادة تعيين كلمة مرور حساب فريق Flash</title>
+
+    <style>
+        /* Global styles and font import */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff; /* لون الخلفية الرئيسي الأبيض */
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط يدعم العربية */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #333333; /* لون النص الافتراضي للجسم */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* لضمان أن الصفحة تأخذ ارتفاع الشاشة بالكامل */
+            box-sizing: border-box;
+        }
+
+        /* Main container for the form, similar to email template's container */
+        .form-page-container {
+            width: 100%;
+            max-width: 480px; /* عرض مناسب لنموذج تعديل كلمة المرور */
+            background-color: #f9f9f9; /* لون خلفية الحاوية رمادي فاتح جداً */
+            color: #333333; /* لون النص الأساسي داكن */
+            border-radius: 10px; /* حواف دائرية أكثر قليلاً */
+            overflow: hidden; /* لإخفاء أي تجاوز للمحتوى */
+            border: 1px solid #e0e0e0; /* حد خفيف للحاوية */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* ظل خفيف */
+        }
+
+        /* Header section with logo */
+        .page-header {
+            padding: 25px 20px;
+            text-align: center;
+            background-color: #f9f9f9; /* نفس لون الحاوية */
+            border-bottom: 1px solid #eeeeee; /* خط فاصل علوي فاتح */
+        }
+
+        .logo {
+            width: 90px; 
+            height: 90px;
+            border-radius: 50%; /* جعل الشعار دائري */
+            border: 2px solid #007bff; /* إطار أزرق حول الشعار (أزرق أفتح) */
+        }
+
+        /* Content area for the form */
+        .form-content {
+            padding: 30px 35px; /* تعديل الحشوة */
+            background-color: #ffffff; /* لون خلفية قسم المحتوى أبيض */
+        }
+
+        .page-title {
+            font-size: 24px; 
+            color: #222222; /* لون العنوان الرئيسي أسود أو رمادي داكن جداً */
+            margin: 0 0 25px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #444444; /* لون أغمق قليلاً للوضوح */
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 11px 14px; /* تعديل الحشوة الداخلية */
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box; 
+            font-family: 'Cairo', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* تأثير تركيز مشابه لـ Bootstrap */
+        }
+
+        /* Button styling */
+        .submit-button {
+            background-color: #007bff; /* لون خلفية الزر أزرق قياسي */
+            color: #ffffff !important; /* لون نص الزر أبيض */
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            margin-top: 15px; /* مسافة فوق الزر */
+        }
+        .submit-button:disabled {
+            background-color: #a0cfff; /* لون أفتح للزر عند تعطيله */
+            cursor: not-allowed;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background-color: #0056b3; /* تغيير لون الخلفية عند التحويم (أزرق أغمق) */
+        }
+        
+        /* Message area for success/error feedback */
+        .message-area {
+            padding: 12px;
+            margin-top: 15px;
+            margin-bottom: 15px; /* مسافة سفلية إذا ظهرت رسالة */
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+            display: none; /* مخفية بشكل افتراضي */
+            line-height: 1.6;
+        }
+        .message-area.info { /* New style for info messages */
+            background-color: #cff4fc;
+            color: #055160;
+            border: 1px solid #b6effb;
+            display: block;
+        }
+
+        .message-area.success {
+            background-color: #d1e7dd; /* أخضر فاتح للنجاح */
+            color: #0f5132; /* أخضر داكن لنص النجاح */
+            border: 1px solid #badbcc;
+            display: block;
+        }
+
+        .message-area.error {
+            background-color: #f8d7da; /* أحمر فاتح للخطأ */
+            color: #842029; /* أحمر داكن لنص الخطأ */
+            border: 1px solid #f5c2c7;
+            display: block;
+        }
+
+        /* Footer section */
+        .page-footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #f1f1f1; /* لون خلفية التذييل رمادي فاتح جداً */
+            border-top: 1px solid #eeeeee; /* خط فاصل علوي فاتح */
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #555555; /* لون نص التذييل رمادي داكن */
+            margin: 0;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px; /* تقليل الحشوة في الشاشات الصغيرة */
+            }
+            .form-page-container {
+                margin: 10px auto; /* لضمان بعض الهامش */
+                max-width: 100%;
+            }
+            .form-content {
+                padding: 25px 20px !important;
+            }
+            .page-title {
+                font-size: 20px !important;
+            }
+            .submit-button {
+                padding: 11px 18px;
+                font-size: 15px;
+            }
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            .form-group input[type="password"] {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Dark mode - matches the main Flash Team app */
+        .dark body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .dark .form-page-container {
+            background-color: #1a1a1a;
+            border-color: #00aaff40;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .dark .page-header {
+            background-color: #1a1a1a;
+            border-bottom-color: #374151;
+        }
+        .dark .form-content {
+            background-color: #1a1a1a;
+        }
+        .dark .page-title {
+            color: #ffffff;
+        }
+        .dark .form-group label {
+            color: #cccccc;
+        }
+        .dark .form-group input[type="password"] {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
+        }
+        .dark .form-group input[type="password"]:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 0.2rem rgba(96,165,250,.25);
+        }
+        .dark .page-footer {
+            background-color: #1f2937;
+            border-top-color: #374151;
+        }
+        .dark .footer-text {
+            color: #bbbbbb;
+        }
+    </style>
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('theme') === 'dark') {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <div class="form-page-container">
+        <header class="page-header">
+            <img src="https://Eng-MinaHanna.github.io/Flash-Team/Flash%20.png" 
+                 alt="شعار فريق Flash" class="logo">
+        </header>
+        <main class="form-content">
+            <h1 class="page-title">تعديل كلمة المرور</h1>
+            <form id="resetPasswordForm">
+                <div class="form-group">
+                    <label for="newPassword">كلمة المرور الجديدة:</label>
+                    <input type="password" id="newPassword" name="newPassword" required placeholder="أدخل كلمة المرور الجديدة">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">تأكيد كلمة المرور الجديدة:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="أعد إدخال كلمة المرور الجديدة">
+                </div>
+                <div id="messageArea" class="message-area">
+                    </div>
+                <button type="submit" id="submitBtn" class="submit-button">تحديث كلمة المرور</button>
+            </form>
+        </main>
+        <footer class="page-footer">
+            <p class="footer-text">
+                &copy; 2026 فريق Flash. جميع الحقوق محفوظة.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // --- Google Sheets Backend (Apps Script) ---
+        // ضع رابط Web App من Apps Script هنا بعد النشر (راجع GoogleSheets-Backend/SETUP.md)
+        const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsQSiMgik0_5BTOK5PNXSRCZoMAD0W0jsGE2fUpV7IzIHhSvAHqL3C0hCcBSRrcCY/exec';
+
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || '';
+        }
+
+        function showMessage(element, message, type) {
+            if (!element) return;
+            element.textContent = message;
+            element.className = 'message-area';
+            if (type !== 'none' && type !== '') {
+                element.classList.add(type);
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('resetPasswordForm');
+            const newPasswordInput = document.getElementById('newPassword');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const messageArea = document.getElementById('messageArea');
+            const submitButton = document.getElementById('submitBtn');
+            const resetToken = getQueryParam('token');
+
+            if (!resetToken) {
+                showMessage(messageArea, 'رابط إعادة التعيين غير صالح أو ناقص. يرجى طلب رابط جديد من صفحة "نسيت كلمة المرور".', 'error');
+                submitButton.disabled = true;
+                return;
+            }
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                submitButton.disabled = true;
+                showMessage(messageArea, '', 'none');
+
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                if (!newPassword || !confirmPassword) {
+                    showMessage(messageArea, 'يرجى ملء جميع الحقول.', 'error');
+                    submitButton.disabled = false;
+                    return;
+                }
+                if (newPassword.length < 8) {
+                    showMessage(messageArea, 'كلمة المرور يجب أن لا تقل عن 8 أحرف.', 'error');
+                    submitButton.disabled = false;
+                    return;
+                }
+                if (newPassword !== confirmPassword) {
+                    showMessage(messageArea, 'كلمتا المرور غير متطابقتين. يرجى التأكد والمحاولة مرة أخرى.', 'error');
+                    submitButton.disabled = false;
+                    return;
+                }
+
+                if (!APP_SCRIPT_URL || APP_SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+                    showMessage(messageArea, 'لم يتم ربط الصفحة بالخادم بعد. اتبع خطوات GoogleSheets-Backend/SETUP.md ثم ضع رابط النشر في APP_SCRIPT_URL.', 'error');
+                    submitButton.disabled = false;
+                    return;
+                }
+
+                try {
+                    const response = await fetch(APP_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify({ action: 'resetPassword', token: resetToken, new_password: newPassword })
+                    });
+                    if (!response.ok) throw new Error('استجابة الخادم غير صالحة (' + response.status + ').');
+                    const result = await response.json();
+                    if (!result || result.success === false) {
+                        throw new Error((result && result.error) ? result.error : 'خطأ غير معروف من الخادم.');
+                    }
+
+                    showMessage(messageArea, 'تم تحديث كلمة المرور بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.', 'success');
+
+                    const formGroups = form.querySelectorAll('.form-group');
+                    formGroups.forEach(group => group.style.display = 'none');
+                    submitButton.style.display = 'none';
+
+                    const goToSiteButton = document.createElement('button');
+                    goToSiteButton.id = 'goToSiteBtn';
+                    goToSiteButton.textContent = 'الذهاب إلى الموقع';
+                    goToSiteButton.className = 'submit-button';
+                    goToSiteButton.type = 'button';
+                    goToSiteButton.addEventListener('click', function () {
+                        window.location.href = 'https://Eng-MinaHanna.github.io/Flash-Team/';
+                    });
+                    form.appendChild(goToSiteButton);
+                } catch (error) {
+                    console.error('Reset password error:', error);
+                    showMessage(messageArea, error.message || 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.', 'error');
+                    submitButton.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فعاليات المشروع - فريق Flash | الإبداع الهندسي وابتكار الحلول</title>
+    <meta name="description" content="فعاليات فريق Flash - مشروع تخرج. تعرف على الفعاليات القادمة والسابقة وفعاليات الفريق الهندسي.">
+    <meta name="keywords" content="فريق Flash, فعاليات, مشروع تخرج, هندسة, توزيع كهرباء, ابتكار">
+    <meta name="author" content="Flash Team">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://placehold.co https://drive.google.com https://drive.usercontent.google.com https://*.googleusercontent.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src 'self'; object-src 'none'; base-uri 'self'">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:site_name" content="فريق Flash">
+    <meta property="og:title" content="فعاليات المشروع - فريق Flash">
+    <meta property="og:description" content="تعرف على فعاليات فريق Flash القادمة والسابقة.">
+    <meta property="og:image" content="./flash-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="فعاليات المشروع - فريق Flash">
+    <meta name="twitter:description" content="تعرف على فعاليات فريق Flash القادمة والسابقة.">
+    <meta name="twitter:image" content="./flash-logo.png">
+    <link rel="icon" href="./flash-logo.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" /></noscript>
+    <link rel="stylesheet" href="./tailwind.css?v=3.0">
+
+    <link rel="stylesheet" href="./styles.css?v=3.0">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('theme') === 'dark') {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="bg-slate-50">
+    <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="site-header flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-4 sm:px-10 py-3 bg-white shadow-sm">
+                <div class="flex-1"> <a href="#" class="nav-link flex items-center gap-2 sm:gap-4 text-[#0e141b]" data-target="home">
+                        <div class="size-8 sm:size-10 flex items-center justify-center"> <img id="header-logo-img" src="./flash-logo.png" alt="شعار فريق Flash" class="header-logo" data-placeholder="https://placehold.co/40x40/768390/FFFFFF?text=F">
+                        </div>
+                        <h2 class="text-[#0e141b] text-lg sm:text-xl font-bold leading-tight tracking-[-0.015em]">فريق Flash</h2>
+                    </a>
+                </div>
+
+                <nav id="desktop-nav" class="hidden md:flex md:flex-1 md:justify-center gap-4 lg:gap-8 items-center">
+                    <a class="nav-link text-[#0e141b] text-sm font-medium leading-normal hover:text-[#1978e5]" href="#" data-target="home">الرئيسية</a>
+                    <a class="nav-link text-[#0e141b] text-sm font-medium leading-normal hover:text-[#1978e5]" href="#" data-target="events">الفعاليات</a>
+                    <a class="nav-link text-[#0e141b] text-sm font-medium leading-normal hover:text-[#1978e5]" href="#" data-target="profiles">الأعضاء</a>
+                    <a id="my-profile-nav-link" class="nav-link text-[#0e141b] text-sm font-medium leading-normal hover:text-[#1978e5] hidden-section" href="#" data-target="my-profile-section">ملفي الشخصي</a>
+                    <a id="admin-nav-link" class="nav-link text-[#0e141b] text-sm font-medium leading-normal hover:text-[#1978e5] hidden-section" href="#" data-target="admin">لوحة التحكم</a>
+                    <a class="nav-link text-[#0e141b] text-sm font-medium leading-normal hover:text-[#1978e5]" href="#" data-target="contact">اتصل بنا</a>
+                </nav>
+
+                <div id="mobile-menu-button-container" class="flex-1 justify-center md:hidden"> <button id="mobile-menu-button" class="p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="flex flex-1 justify-end items-center gap-2 sm:gap-4"> <button id="theme-toggle-button" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden-section" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden-section" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.464 4.076a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div id="auth-links" class="flex items-center gap-2 sm:gap-4">
+                        <button id="nav-login-btn" data-target="login" class="nav-link flex min-w-[70px] sm:min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 sm:h-10 px-3 sm:px-4 bg-[#1978e5] text-slate-50 text-xs sm:text-sm font-bold leading-normal tracking-[0.015em]">
+                            <span class="truncate">تسجيل الدخول</span>
+                        </button>
+                         <button id="nav-signup-btn" data-target="signup" class="nav-link flex min-w-[70px] sm:min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 sm:h-10 px-3 sm:px-4 border border-[#1978e5] text-[#1978e5] text-xs sm:text-sm font-bold leading-normal tracking-[0.015em]">
+                            <span class="truncate">إنشاء حساب</span>
+                        </button>
+                    </div>
+                     <div id="user-info" class="hidden-section items-center gap-2 sm:gap-3">
+                        <img id="user-avatar-nav" src="https://placehold.co/32x32/E0E0E0/B0B0B0?text=U" alt="User Avatar" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover" data-placeholder="https://placehold.co/40x40/E0E0E0/B0B0B0?text=U">
+                        <span id="user-name-nav" class="hidden sm:block text-sm font-medium text-[#0e141b]"></span>
+                        <button id="nav-logout-btn" class="flex min-w-[70px] sm:min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 sm:h-10 px-3 sm:px-4 bg-red-500 text-slate-50 text-xs sm:text-sm font-bold leading-normal tracking-[0.015em]">
+                            <span class="truncate">تسجيل الخروج</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <div id="mobile-menu" class="md:hidden bg-white shadow-lg py-2 hidden-section">
+                <a class="block nav-link text-center text-[#0e141b] py-2 text-sm font-medium leading-normal hover:text-[#1978e5] dark:text-gray-200 dark:hover:text-blue-400" href="#" data-target="home">الرئيسية</a>
+                <a class="block nav-link text-center text-[#0e141b] py-2 text-sm font-medium leading-normal hover:text-[#1978e5] dark:text-gray-200 dark:hover:text-blue-400" href="#" data-target="events">الفعاليات</a>
+                <a class="block nav-link text-center text-[#0e141b] py-2 text-sm font-medium leading-normal hover:text-[#1978e5] dark:text-gray-200 dark:hover:text-blue-400" href="#" data-target="profiles">الأعضاء</a>
+                <a id="my-profile-nav-link-mobile" class="block nav-link text-center text-[#0e141b] py-2 text-sm font-medium leading-normal hover:text-[#1978e5] hidden-section dark:text-gray-200 dark:hover:text-blue-400" href="#" data-target="my-profile-section">ملفي الشخصي</a>
+                <a id="admin-nav-link-mobile" class="block nav-link text-center text-[#0e141b] py-2 text-sm font-medium leading-normal hover:text-[#1978e5] hidden-section dark:text-gray-200 dark:hover:text-blue-400" href="#" data-target="admin">لوحة التحكم</a>
+                <a class="block nav-link text-center text-[#0e141b] py-2 text-sm font-medium leading-normal hover:text-[#1978e5] dark:text-gray-200 dark:hover:text-blue-400" href="#" data-target="contact">اتصل بنا</a>
+            </div>
+
+
+            <main class="flex-1">
+                <section id="events" class="content-section px-5 md:px-20 lg:px-40 py-5">
+                    <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
+                        <div class="flex flex-wrap justify-between items-center gap-3 p-4">
+                            <p class="text-[#101418] tracking-light text-2xl sm:text-[32px] font-bold leading-tight min-w-72">فعاليات المشروع</p>
+                            <button id="create-event-btn" class="form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300 hidden-section"> <span class="truncate">إنشاء فعالية</span>
+                            </button>
+                        </div>
+
+                        <div id="create-event-form-container" class="hidden-section p-6 bg-white rounded-lg shadow mb-8">
+                            <h2 id="event-form-title" class="text-[#101418] text-2xl font-bold mb-4">إنشاء فعالية جديدة</h2>
+
+                            <div id="event-images-preview-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mb-4">
+                                </div>
+                            <div class="mb-4">
+                                <label for="event-image-files" class="block text-sm font-medium text-gray-700">ملفات الفعالية (حتى 10 ملفات)</label>
+                                <input type="file" id="event-image-files" name="imageFiles" multiple class="input-field mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1978e5] hover:file:bg-blue-100">
+                                <p class="text-xs text-gray-500 mt-1">اختر صورة واحدة لتكون الصورة الرئيسية للفعالية من خلال النقر عليها في المعاينة.</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="event-attachment-files" class="block text-sm font-medium text-gray-700">مرفقات الفعالية (فيديو / PDF / DWG) — حتى 10 مرفقات</label>
+                                <input type="file" id="event-attachment-files" multiple accept="video/*,.pdf,.dwg,.mp4,.webm,.mov,.avi,.mkv" class="input-field mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1978e5] hover:file:bg-blue-100">
+                                <p class="text-xs text-gray-500 mt-1">الفيديو يُشغَّل داخل الصفحة، والملفات PDF تُعرض بمعاينة مدمجة، وملفات DWG تظهر كزر تحميل. الملفات الكبيرة تُرفع على دفعات وقد يستغرق الرفع بعض الوقت.</p>
+                                <div id="event-attachments-preview" class="flex flex-col gap-2 mt-2"></div>
+                                <div id="event-attachments-progress" class="hidden-section mt-2"></div>
+                            </div>
+
+                            <form id="create-event-form" class="space-y-4">
+                                <div>
+                                    <label for="event-title" class="block text-sm font-medium text-gray-700">عنوان الفعالية</label>
+                                    <input type="text" id="event-title" name="title" required class="input-field mt-1 block w-full">
+                                </div>
+                                <div>
+                                    <label for="event-description" class="block text-sm font-medium text-gray-700">وصف الفعالية</label>
+                                    <textarea id="event-description" name="description" rows="3" required class="input-field mt-1 block w-full"></textarea>
+                                </div>
+                                <div>
+                                    <label for="event-date" class="block text-sm font-medium text-gray-700">تاريخ الفعالية</label>
+                                    <input type="date" id="event-date" name="event_date" required class="input-field mt-1 block w-full">
+                                </div>
+                                <div class="flex gap-4">
+                                    <button type="submit" id="submit-event-form-btn" class="form-button flex-1 bg-[#1978e5] text-slate-50 hover:bg-blue-700">إنشاء</button>
+                                    <button type="button" id="cancel-create-event-btn" class="form-button flex-1 bg-gray-300 text-gray-700 hover:bg-gray-400">إلغاء</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <h2 class="text-[#101418] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">الفعاليات القادمة</h2>
+                        <div id="upcoming-events-list" class="p-4 space-y-6">
+                            <div class="text-center p-4 text-gray-500 col-span-full">جاري تحميل الفعاليات القادمة...</div>
+                        </div>
+
+                        <h2 class="text-[#101418] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">الفعاليات السابقة</h2>
+                        <div id="past-events-list" class="p-4 space-y-6">
+                            <div class="text-center p-4 text-gray-500 col-span-full">جاري تحميل الفعاليات السابقة...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="event-details" class="content-section hidden-section px-5 md:px-20 lg:px-40 py-5">
+                    <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
+                        <div class="flex flex-wrap gap-2 p-4">
+                            <a href="#" class="nav-link text-[#4e7097] text-base font-medium leading-normal" data-target="events">الفعاليات</a>
+                            <span class="text-[#4e7097] text-base font-medium leading-normal">/</span>
+                            <span id="event-details-breadcrumb" class="text-[#0e141b] text-base font-medium leading-normal">تفاصيل الفعالية</span>
+                        </div>
+                        <div id="event-details-content" class="bg-white p-6 rounded-lg shadow-md">
+                            <img id="event-details-main-image" src="https://placehold.co/800x400/64748B/E0E7FF?text=Event+Image" alt="صورة الفعالية الرئيسية" class="w-full h-auto object-cover rounded-lg mb-6 shadow">
+                            <div id="event-details-gallery" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 mb-4">
+                                </div>
+                            <div id="event-details-attachments" class="mb-4">
+                                </div>
+                            <div class="text-center p-4 text-gray-500">جاري تحميل تفاصيل الفعالية...</div>
+                        </div>
+
+                        <h2 class="text-[#0e141b] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">التعليقات</h2>
+                        <div id="event-comments-list" class="space-y-4 p-4 bg-white rounded-lg shadow-md mt-4">
+                            <div class="text-center p-4 text-gray-500">جاري تحميل التعليقات...</div>
+                        </div>
+
+                        <div id="add-comment-form-container" class="mt-6 p-4 bg-white rounded-lg shadow-md">
+                            <form id="add-comment-form" class="flex items-start gap-3">
+                                <img id="commenter-avatar" src="https://placehold.co/40x40/E0E0E0/B0B0B0?text=User" alt="User Avatar" class="size-10 rounded-full shrink-0 object-cover" data-placeholder="https://placehold.co/40x40/E0E0E0/B0B0B0?text=User">
+                                <textarea id="comment-text" placeholder="أضف تعليقاً..." required class="form-input flex-1 resize-none rounded-lg border-gray-300 focus:ring-[#1978e5] focus:border-[#1978e5] p-3 text-base" rows="3"></textarea>
+                                <button type="submit" class="form-button self-end bg-[#1978e5] text-slate-50 h-12 px-6">نشر</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="flex justify-center border-t border-solid border-t-[#e7edf3] bg-white">
+                <div class="flex max-w-[960px] flex-1 flex-col">
+                    <div class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                        <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                            <a class="text-[#4e7097] text-base font-normal leading-normal min-w-40 hover:text-[#1978e5]" href="#">سياسة الخصوصية</a>
+                            <a class="text-[#4e7097] text-base font-normal leading-normal min-w-40 hover:text-[#1978e5]" href="#">شروط الخدمة</a>
+                            <a class="nav-link text-[#4e7097] text-base font-normal leading-normal min-w-40 hover:text-[#1978e5]" href="#" data-target="contact">اتصل بنا</a>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="#" aria-label="Twitter"><div class="text-[#4e7097] hover:text-[#1978e5]" data-icon="TwitterLogo" data-size="24px"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg></div></a>
+                            <a href="#" aria-label="Instagram"><div class="text-[#4e7097] hover:text-[#1978e5]" data-icon="InstagramLogo" data-size="24px"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path></svg></div></a>
+                        </div>
+                        <p class="text-[#4e7097] text-base font-normal leading-normal">@2026 فريق Flash. جميع الحقوق محفوظة.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div id="messageModal" class="modal hidden-section" role="dialog" aria-modal="true" aria-labelledby="modalMessageText">
+        <div class="modal-content">
+            <p id="modalMessageText"></p>
+            <button id="modalCloseBtn" class="modal-close-btn">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal hidden-section" role="dialog" aria-modal="true" aria-labelledby="confirmModalMessage">
+        <div class="modal-content">
+            <p id="confirmModalMessage" class="mb-4"></p>
+            <div class="flex justify-center gap-4">
+                <button id="confirmModalConfirmBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    تأكيد
+                </button>
+                <button id="confirmModalCancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                    إلغاء
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-overlay" class="hidden-section fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm" aria-live="polite">
+        <div class="flex flex-col items-center gap-4 bg-white dark:bg-gray-800 rounded-2xl px-10 py-8 shadow-2xl border border-[#d4dbe2] dark:border-gray-700">
+            <div class="w-12 h-12 border-4 border-[#1978e5] border-t-transparent rounded-full animate-spin"></div>
+            <p id="loading-overlay-message" class="text-sm font-bold text-[#101418] dark:text-gray-100">جارٍ التحميل...</p>
+        </div>
+    </div>
+
+    <script src="./app-core.js?v=3.0" defer></script>
+    <script src="./app-navigation.js?v=3.0" defer></script>
+    <script src="./app-admin.js?v=3.0" defer></script>
+    <script src="./app-session.js?v=3.0" defer></script>
+    <script src="./app-team.js?v=3.0" defer></script>
+    <script src="./app-events.js?v=3.0" defer></script>
+    <script src="./app-init.js?v=3.0" defer></script>
+</body></html>

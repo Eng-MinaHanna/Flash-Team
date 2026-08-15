@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفعيل حسابك - فريق Flash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #6366f1;
+            --brand-2: #8b5cf6;
+            --brand-3: #06b6d4;
+            --accent: #d946ef;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans Arabic", "Be Vietnam Pro", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background:
+                radial-gradient(1100px 620px at 88% -8%, rgba(139, 92, 246, 0.35), transparent 60%),
+                radial-gradient(900px 540px at -12% 30%, rgba(6, 182, 212, 0.28), transparent 55%),
+                radial-gradient(820px 620px at 55% 115%, rgba(217, 70, 239, 0.22), transparent 60%),
+                linear-gradient(160deg, #0b1023 0%, #131a3a 50%, #0f152e 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::before {
+            width: 340px; height: 340px;
+            left: -120px; top: -80px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 70%);
+            animation: floatA 14s ease-in-out infinite alternate;
+        }
+        body::after {
+            width: 380px; height: 380px;
+            right: -130px; bottom: -100px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent 70%);
+            animation: floatB 18s ease-in-out infinite alternate;
+        }
+        @keyframes floatA { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,40px) scale(1.15); } }
+        @keyframes floatB { from { transform: translate(0,0) scale(1); } to { transform: translate(-50px,-30px) scale(1.12); } }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 460px;
+            border-radius: 26px;
+            padding: 44px 34px 36px;
+            background: rgba(17, 24, 46, 0.55);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            backdrop-filter: blur(20px) saturate(1.4);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #06b6d4, #d946ef, #8b5cf6, #6366f1);
+            background-size: 300% 100%;
+            animation: slide 8s linear infinite;
+            border-radius: 26px 26px 0 0;
+        }
+        @keyframes slide { from { background-position: 0 0; } to { background-position: 300% 0; } }
+
+        .logo-wrap {
+            position: relative;
+            width: 96px; height: 96px;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo {
+            width: 72px; height: 72px;
+            object-fit: contain;
+            border-radius: 22px;
+            animation: bob 3s ease-in-out infinite;
+            box-shadow: 0 18px 40px -14px rgba(139, 92, 246, 0.65);
+        }
+        .ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: conic-gradient(from 0deg, transparent 4%, #6366f1 26%, #06b6d4 52%, #d946ef 78%, transparent 96%);
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        h1 {
+            font-size: 1.55rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(120deg, #e0e7ff 0%, #67e8f9 60%, #e9d5ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.msg {
+            color: #c7d2fe;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            margin-bottom: 24px;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            background: rgba(99, 102, 241, 0.16);
+            border: 1px solid rgba(129, 140, 248, 0.4);
+            color: #c7d2fe;
+        }
+        .status .dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: #818cf8;
+            box-shadow: 0 0 12px #818cf8;
+            animation: pulse 1.4s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+        .status.ok { background: rgba(52, 211, 153, 0.16); border-color: rgba(52, 211, 153, 0.45); color: #a7f3d0; }
+        .status.ok .dot { background: #34d399; box-shadow: 0 0 12px #34d399; }
+        .status.err { background: rgba(248, 113, 113, 0.16); border-color: rgba(248, 113, 113, 0.45); color: #fecaca; }
+        .status.err .dot { background: #f87171; box-shadow: 0 0 12px #f87171; }
+
+        .btn {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 13px 34px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 900;
+            font-size: 0.95rem;
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #06b6d4 130%);
+            background-size: 160% 100%;
+            box-shadow: 0 14px 34px -12px rgba(99, 102, 241, 0.7);
+            transition: transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease, background-position 0.4s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            background-position: 80% 0;
+            box-shadow: 0 20px 44px -12px rgba(139, 92, 246, 0.8);
+        }
+        .btn:active { transform: scale(0.97); }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1.5px solid rgba(148, 163, 184, 0.35);
+            box-shadow: none;
+        }
+        .btn.ghost:hover { border-color: rgba(148, 163, 184, 0.7); background: rgba(148, 163, 184, 0.08); }
+
+        .btn-spinner {
+            display: inline-block;
+            width: 15px; height: 15px;
+            margin-inline-end: 8px;
+            border-radius: 50%;
+            border: 2.5px solid currentColor;
+            border-top-color: transparent;
+            animation: spin 0.7s linear infinite;
+            vertical-align: -2px;
+        }
+        .btn-loading { pointer-events: none; opacity: 0.85; }
+
+        form { margin-top: 26px; text-align: right; }
+        form label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #c7d2fe;
+            margin-bottom: 8px;
+        }
+        form input {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 13px;
+            border: 1.5px solid rgba(148, 163, 184, 0.28);
+            background: rgba(15, 20, 40, 0.7);
+            color: #f8fafc;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 14px;
+        }
+        form input:focus {
+            outline: none;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.22);
+        }
+        form .btn { margin-top: 4px; }
+
+        .sub {
+            margin-top: 18px;
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+        .sub a { color: #a5b4fc; text-decoration: none; font-weight: 700; }
+        .sub a:hover { text-decoration: underline; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo-wrap">
+            <img class="logo" src="https://eng-minahanna.github.io/Flash-Team/flash-logo.png" alt="شعار فريق Flash" onerror="this.onerror=null;this.src='https://placehold.co/72x72/6366f1/FFFFFF?text=F'">
+            <div class="ring" aria-hidden="true"></div>
+        </div>
+        <h1 id="title">جارٍ تفعيل حسابك...</h1>
+        <p class="msg" id="message">نرجو الانتظار لحظة، نحن نتحقق من الرابط الآن.</p>
+        <div class="status" id="status"><span class="dot"></span><span id="status-text">جارٍ التحقق...</span></div>
+        <div id="actions" class="hidden">
+            <a class="btn" id="go-home" href="https://Eng-MinaHanna.github.io/Flash-Team/">الدخول إلى الموقع</a>
+        </div>
+        <div id="resend-block" class="hidden">
+            <form id="resend-form">
+                <label for="resend-email">أدخل بريدك الإلكتروني لإعادة إرسال رابط التفعيل</label>
+                <input type="email" id="resend-email" placeholder="example@email.com" required>
+                <button type="submit" class="btn" id="resend-btn">إعادة إرسال رابط التفعيل</button>
+            </form>
+        </div>
+        <p class="sub" id="footer-note">إذا لم تصلك رسالة التفعيل، تحقق من مجلد المهملات (Spam).</p>
+    </div>
+
+    <script>
+        var APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6F8K0I3uRPuxidCQxEp4wLcgM26d8YKQtz78YXwYXrnHnfN6UPjz1Z6A90jJA0k4/exec';
+        var SESSION_TOKEN_KEY = 'flash_team_token';
+        var SESSION_USER_KEY = 'flash_team_user';
+
+        function $(id) { return document.getElementById(id); }
+        function setStatus(kind, text) {
+            var s = $('status');
+            s.classList.remove('ok', 'err');
+            if (kind) s.classList.add(kind);
+            $('status-text').textContent = text;
+        }
+        function setBtnLoading(btn, on) {
+            if (on) {
+                btn.classList.add('btn-loading');
+                btn.dataset.orig = btn.innerHTML;
+                btn.innerHTML = '<span class="btn-spinner"></span> جارٍ التنفيذ...';
+            } else {
+                btn.classList.remove('btn-loading');
+                btn.innerHTML = btn.dataset.orig || btn.innerHTML;
+            }
+        }
+        async function api(action, payload) {
+            var body = Object.assign({ action: action }, payload);
+            var res = await fetch(APP_SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(body)
+            });
+            if (!res.ok) throw new Error('استجابة الخادم غير صالحة (' + res.status + ').');
+            var data;
+            try { data = await res.json(); } catch (e) { throw new Error('استجابة الخادم غير صالحة.'); }
+            if (!data || data.success === false) {
+                throw new Error(data && data.error ? data.error : 'خطأ غير معروف من الخادم.');
+            }
+            return data;
+        }
+        function params() {
+            var out = {};
+            var q = window.location.search.replace(/^\?/, '');
+            q.split('&').forEach(function (kv) {
+                var parts = kv.split('=');
+                if (parts[0]) out[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '');
+            });
+            return out;
+        }
+
+        var token = params().token;
+
+        if (token) {
+            api('verifyEmail', { token: token }).then(function (result) {
+                try {
+                    localStorage.setItem(SESSION_TOKEN_KEY, result.token);
+                    localStorage.setItem(SESSION_USER_KEY, JSON.stringify(result.user));
+                } catch (e) {}
+                $('title').textContent = 'تم تفعيل حسابك بنجاح!';
+                $('message').textContent = 'أصبح حسابك مفعّلاً الآن. اضغط على الزر للدخول مباشرة إلى الموقع.';
+                setStatus('ok', 'تم التفعيل بنجاح');
+                $('actions').classList.remove('hidden');
+                $('resend-block').classList.add('hidden');
+                $('footer-note').classList.add('hidden');
+                setTimeout(function () {
+                    window.location.replace('https://Eng-MinaHanna.github.io/Flash-Team/');
+                }, 4000);
+            }).catch(function (err) {
+                $('title').textContent = 'تعذر تفعيل الحساب';
+                $('message').textContent = err.message;
+                setStatus('err', 'فشل التفعيل');
+                $('resend-block').classList.remove('hidden');
+            });
+        } else {
+            $('title').textContent = 'رابط غير صالح';
+            $('message').textContent = 'لا يوجد رمز تفعيل في الرابط. أعد إرسال رابط التفعيل من الأسفل.';
+            setStatus('err', 'رابط غير صالح');
+            $('resend-block').classList.remove('hidden');
+        }
+
+        $('resend-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var email = $('resend-email').value.trim();
+            if (!email) return;
+            var btn = $('resend-btn');
+            setBtnLoading(btn, true);
+            api('resendVerification', { email: email }).then(function () {
+                setBtnLoading(btn, false);
+                $('title').textContent = 'تم إرسال الرابط';
+                $('message').textContent = 'إذا كان البريد مسجلاً وغير مفعّل بعد، ستصل رسالة جديدة خلال دقائق.';
+                setStatus('ok', 'أُرسل إلى بريدك');
+            }).catch(function (err) {
+                setBtnLoading(btn, false);
+                setStatus('err', err.message);
+            });
+        });
+    </script>
+</body>
+</html>

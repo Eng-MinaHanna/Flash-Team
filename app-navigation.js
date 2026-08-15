@@ -238,6 +238,12 @@
                         role,
                         access_code: accessCode.trim()
                     });
+                    if (result.requires_verification) {
+                        showModalMessage('تم إنشاء حسابك! أرسلنا رابط تفعيل إلى بريدك الإلكتروني. فعّل حسابك ثم سجّل الدخول.');
+                        await updateAuthState(null);
+                        navigateTo('login').catch(err => console.warn("Navigation to login after signup failed:", err.message));
+                        return;
+                    }
                     saveSession(result.token, result.user);
                     writeMeCache(result.user);
                     showModalMessage('تم إنشاء حسابك بنجاح!');

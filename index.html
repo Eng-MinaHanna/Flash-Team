@@ -24,9 +24,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" /></noscript>
-    <link rel="stylesheet" href="./tailwind.css?v=3.0">
+    <link rel="stylesheet" href="./tailwind.css?v=4.0">
 
-    <link rel="stylesheet" href="./styles.css?v=3.0">
+    <link rel="stylesheet" href="./styles.css?v=4.0">
     <script>
         (function () {
             try {
@@ -79,7 +79,7 @@
                      <div id="user-info" class="hidden-section items-center gap-2 sm:gap-3">
                         <img id="user-avatar-nav" src="https://placehold.co/32x32/E0E0E0/B0B0B0?text=U" alt="User Avatar" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover" data-placeholder="https://placehold.co/40x40/E0E0E0/B0B0B0?text=U">
                         <span id="user-name-nav" class="hidden sm:block text-sm font-medium text-[#0e141b]"></span>
-                        <button id="nav-logout-btn" class="flex min-w-[70px] sm:min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 sm:h-10 px-3 sm:px-4 bg-red-500 text-slate-50 text-xs sm:text-sm font-bold leading-normal tracking-[0.015em]">
+                        <button id="nav-logout-btn" data-spin class="flex min-w-[70px] sm:min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 sm:h-10 px-3 sm:px-4 bg-red-500 text-slate-50 text-xs sm:text-sm font-bold leading-normal tracking-[0.015em]">
                             <span class="truncate">تسجيل الخروج</span>
                         </button>
                     </div>
@@ -115,11 +115,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="text-[#0e141b] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">من نحن</h2>
-                        <p class="text-[#0e141b] text-sm sm:text-base font-normal leading-normal pb-3 pt-1 px-4">
+                        <h2 class="reveal text-[#0e141b] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">من نحن</h2>
+                        <p class="reveal text-[#0e141b] text-sm sm:text-base font-normal leading-normal pb-3 pt-1 px-4">
 "شرارة الإبداع، وسرعة الإنجاز! هنا فريق Flash، حيث تجتمع 15 عقلية هندسية لامعة، يوحدهم شغف لا حدود له بالابتكار. مهمتنا؟ تحويل الأفكار الجريئة إلى واقع ملموس يضيء المستقبل. استكشفوا معنا جزء من عالمنا الهندسي الذي نفتخر بوجوده لكم هنا."                        </p>
-                        <h2 class="text-[#0e141b] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">مشروعنا</h2>
-                        <p class="text-[#0e141b] text-sm sm:text-base font-normal leading-normal pb-3 pt-1 px-4">
+                        <h2 class="reveal text-[#0e141b] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">مشروعنا</h2>
+                        <p class="reveal text-[#0e141b] text-sm sm:text-base font-normal leading-normal pb-3 pt-1 px-4">
 انطلاقًا من شغف فريق Flash بالابتكار والتطوير، نقدم تصورًا لمشروع توزيع كهرباء لمبنى حديث متكامل. يهدف هذا المشروع إلى تجاوز الطرق التقليدية في توزيع الطاقة، مع التركيز على دمج أحدث التقنيات لضمان الكفاءة، الاستدامة، الأمان، المرونة، وتقديم تجربة مستخدم لا مثيل لها.                        </p>
                         </div>
                 </section>
@@ -268,6 +268,8 @@
         </div>
     </div>
 
+    <div id="startup-loader" class="startup-loader" role="status" aria-label="جارٍ التحميل"></div>
+
     <div id="loading-overlay" class="hidden-section fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm" aria-live="polite">
         <div class="flex flex-col items-center gap-4 bg-white dark:bg-gray-800 rounded-2xl px-10 py-8 shadow-2xl border border-[#d4dbe2] dark:border-gray-700">
             <div class="w-12 h-12 border-4 border-[#1978e5] border-t-transparent rounded-full animate-spin"></div>
@@ -275,11 +277,11 @@
         </div>
     </div>
 
-    <script src="./app-core.js?v=3.0" defer></script>
-    <script src="./app-navigation.js?v=3.0" defer></script>
-    <script src="./app-admin.js?v=3.0" defer></script>
-    <script src="./app-session.js?v=3.0" defer></script>
-    <script src="./app-team.js?v=3.0" defer></script>
-    <script src="./app-events.js?v=3.0" defer></script>
-    <script src="./app-init.js?v=3.0" defer></script>
+    <script src="./app-core.js?v=4.0" defer></script>
+    <script src="./app-navigation.js?v=4.0" defer></script>
+    <script src="./app-admin.js?v=4.0" defer></script>
+    <script src="./app-session.js?v=4.0" defer></script>
+    <script src="./app-team.js?v=4.0" defer></script>
+    <script src="./app-events.js?v=4.0" defer></script>
+    <script src="./app-init.js?v=4.0" defer></script>
 </body></html>

@@ -33,6 +33,7 @@
             showToast(message, 'success');
         }
         function showToast(message, type = 'success') {
+            restoreSpunButton();
             let container = document.getElementById('toast-container');
             if (!container) {
                 container = document.createElement('div');
@@ -112,6 +113,7 @@
         }
 
         function showMessageModal(message) {
+            restoreSpunButton();
             if (modalMessageText && messageModal) {
                 modalMessageText.textContent = message;
                 modalMessageText.className = 'text-red-600 font-semibold';
@@ -307,6 +309,95 @@
                     if (overlay && _loadingCount === 0) overlay.classList.add('hidden-section');
                 }, 200);
             }
+            if (_loadingCount === 0) restoreSpunButton();
+        }
+
+        // --- Button spinner: instant per-action feedback on buttons ---
+        const _spinStore = new WeakMap();
+        let _spunBtn = null;
+
+        function spinButton(btn) {
+            if (!btn || btn.disabled) return;
+            _spinStore.set(btn, { html: btn.innerHTML, disabled: btn.disabled });
+            btn.disabled = true;
+            btn.classList.add('btn-loading');
+            btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span><span class="btn-spinner-label">' + btn.innerHTML + '</span>';
+            setTimeout(() => {
+                if (_spunBtn === btn) restoreSpunButton();
+            }, 20000);
+        }
+
+        function unspinButton(btn) {
+            if (!btn) return;
+            const prev = _spinStore.get(btn);
+            if (prev) {
+                btn.innerHTML = prev.html;
+                btn.disabled = prev.disabled;
+                _spinStore.delete(btn);
+            }
+            btn.classList.remove('btn-loading');
+        }
+
+        function restoreSpunButton() {
+            if (_spunBtn) {
+                unspinButton(_spunBtn);
+                _spunBtn = null;
+            }
+        }
+
+        document.addEventListener('submit', (e) => {
+            const t = e.target;
+            if (t && t.tagName === 'FORM') {
+                const btn = t.querySelector('button[type="submit"], button[data-spin]');
+                if (btn) {
+                    restoreSpunButton();
+                    _spunBtn = btn;
+                    spinButton(btn);
+                }
+            }
+        }, true);
+
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-spin]');
+            if (btn && !btn.disabled) {
+                restoreSpunButton();
+                _spunBtn = btn;
+                spinButton(btn);
+            }
+        }, true);
+
+        // --- Startup loader: full-page splash shown on page open ---
+        let _startupHidden = false;
+        function hideStartupLoader() {
+            if (_startupHidden) return;
+            _startupHidden = true;
+            const el = document.getElementById('startup-loader');
+            if (!el) return;
+            el.classList.add('startup-loader-hide');
+            setTimeout(() => {
+                if (el && el.parentNode) el.parentNode.removeChild(el);
+            }, 500);
+        }
+        window.addEventListener('load', () => {
+            setTimeout(hideStartupLoader, 4000);
+        });
+
+        // --- Scroll reveal animation ---
+        if ('IntersectionObserver' in window) {
+            document.documentElement.classList.add('reveal-enabled');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            const observeReveal = () => {
+                document.querySelectorAll('.reveal:not(.in-view)').forEach(el => revealObserver.observe(el));
+            };
+            observeReveal();
+            document.addEventListener('DOMContentLoaded', observeReveal);
         }
 
         document.addEventListener('click', (e) => {
@@ -386,6 +477,94 @@
         const MAX_EVENT_ATTACHMENTS = 10;
         const UPLOAD_CHUNK_BYTES = 10 * 1024 * 1024;
         const SIMPLE_UPLOAD_MAX_BYTES = 28 * 1024 * 1024;
+
+        // --- Hero settings (قسم الرئيسية) ---
+        const HERO_STORAGE_KEY = 'flash_hero_settings';
+        const DEFAULT_HERO_SETTINGS = {
+            title: 'فريق Flash',
+            subtitle: 'نحن فريق نعمل على مشروع تخرجنا. هدفنا هو إنشاء حلول مبتكرة تحدث فرقاً.',
+            button_text: 'اكتشف المزيد',
+            button_link: 'events',
+            button_url: '',
+            background_image: '',
+            overlay: 55,
+            min_height: 480
+        };
+
+        let _heroSettings = null;
+
+        function getDefaultHeroSettings() {
+            return Object.assign({}, DEFAULT_HERO_SETTINGS);
+        }
+
+        async function loadHeroSettings() {
+            if (_heroSettings) return _heroSettings;
+            const merged = getDefaultHeroSettings();
+            try {
+                const local = JSON.parse(localStorage.getItem(HERO_STORAGE_KEY) || 'null');
+                if (local && typeof local === 'object') Object.assign(merged, local);
+            } catch (e) { }
+            try {
+                const fetched = await api('getSettings', {}, true);
+                if (fetched && fetched.settings && typeof fetched.settings === 'object') {
+                    Object.assign(merged, fetched.settings);
+                }
+            } catch (e) { }
+            _heroSettings = merged;
+            return merged;
+        }
+
+        async function saveHeroSettings(settings) {
+            _heroSettings = Object.assign({}, settings);
+            try {
+                localStorage.setItem(HERO_STORAGE_KEY, JSON.stringify(settings));
+            } catch (e) { }
+            try {
+                await api('updateSettings', { settings: settings }, true);
+                return { backend: true };
+            } catch (err) {
+                return { backend: false, error: err.message };
+            }
+        }
+
+        function applyHeroSettings(settings) {
+            const hero = document.querySelector('.hero-section');
+            if (!hero) return;
+            const s = Object.assign({}, getDefaultHeroSettings(), settings || {});
+            const titleEl = document.getElementById('hero-title');
+            if (titleEl) titleEl.textContent = s.title || DEFAULT_HERO_SETTINGS.title;
+            const subtitleEl = document.getElementById('hero-subtitle');
+            if (subtitleEl) subtitleEl.textContent = s.subtitle || DEFAULT_HERO_SETTINGS.subtitle;
+            buildHeroCta(s);
+            const bg = (s.background_image || '').trim();
+            if (bg) {
+                const o = Math.min(90, Math.max(0, Number(s.overlay) || 55)) / 100;
+                hero.style.backgroundImage = 'linear-gradient(rgba(3, 10, 35, ' + o + '), rgba(3, 10, 35, ' + o + ')), url("' + bg.replace(/"/g, '%22') + '")';
+                hero.classList.add('hero-has-bg');
+            } else {
+                hero.style.backgroundImage = '';
+                hero.classList.remove('hero-has-bg');
+            }
+            hero.style.minHeight = Math.min(700, Math.max(220, Number(s.min_height) || 480)) + 'px';
+        }
+
+        function buildHeroCta(settings) {
+            const wrap = document.getElementById('hero-cta-wrap');
+            if (!wrap) return;
+            const label = settings.button_text || DEFAULT_HERO_SETTINGS.button_text;
+            const link = settings.button_link || 'events';
+            const url = (settings.button_url || '').trim();
+            const cls = 'flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em] bg-[#1978e5] text-slate-50';
+            let html;
+            if (link === 'custom' && url) {
+                html = '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener" class="' + cls + '"><span class="truncate">' + escapeHtml(label) + '</span></a>';
+            } else {
+                const routeMap = { events: 'events.html#events', team: 'team.html#profiles', contact: 'index.html#contact' };
+                const target = routeMap[link] ? link : 'events';
+                html = '<a href="' + routeMap[target] + '" data-target="' + target + '" class="' + cls + ' nav-link"><span class="truncate">' + escapeHtml(label) + '</span></a>';
+            }
+            wrap.innerHTML = html;
+        }
 
         // --- Common styles ---
         const inputFieldStyles = "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101418] focus:outline-0 focus:ring-2 focus:ring-[#1978e5] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] h-14 placeholder:text-[#5c718a] p-[15px] text-base font-normal leading-normal";

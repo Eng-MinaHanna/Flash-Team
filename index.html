@@ -8,7 +8,7 @@
     <meta name="keywords" content="فريق Flash, مشروع تخرج, هندسة, توزيع كهرباء, فريق هندسي, ابتكار">
     <meta name="author" content="Flash Team">
     <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://placehold.co https://drive.google.com https://drive.usercontent.google.com https://*.googleusercontent.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src 'self'; object-src 'none'; base-uri 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: https://placehold.co https://drive.google.com https://drive.usercontent.google.com https://*.googleusercontent.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src 'self'; object-src 'none'; base-uri 'self'">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_EG">
     <meta property="og:site_name" content="فريق Flash">
@@ -24,9 +24,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" /></noscript>
-    <link rel="stylesheet" href="./tailwind.css?v=4.0">
+    <link rel="stylesheet" href="./tailwind.css?v=4.2">
 
-    <link rel="stylesheet" href="./styles.css?v=4.0">
+    <link rel="stylesheet" href="./styles.css?v=4.2">
     <script>
         (function () {
             try {
@@ -102,16 +102,18 @@
                             <div class="@[480px]:p-4">
                                 <div class="hero-section flex min-h-[300px] sm:min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" style='background-image: radial-gradient(ellipse at 20% 20%, #1e3a5f 0%, #0f172a 60%), linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));'>
                                     <div class="flex flex-col gap-2 text-center">
-                                        <h1 class="text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                                        <h1 id="hero-title" class="text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
                                             فريق Flash
                                         </h1>
-                                        <h2 class="text-white text-xs sm:text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                                        <h2 id="hero-subtitle" class="text-white text-xs sm:text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
                                             نحن فريق نعمل على مشروع تخرجنا. هدفنا هو إنشاء حلول مبتكرة تحدث فرقاً.
                                         </h2>
                                     </div>
-                                    <button data-target="events" class="nav-link flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#1978e5] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                                        <span class="truncate">اكتشف المزيد</span>
-                                    </button>
+                                    <div id="hero-cta-wrap">
+                                        <a href="events.html#events" data-target="events" class="nav-link flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#1978e5] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
+                                            <span id="hero-cta-text" class="truncate">اكتشف المزيد</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -277,11 +279,11 @@
         </div>
     </div>
 
-    <script src="./app-core.js?v=4.0" defer></script>
-    <script src="./app-navigation.js?v=4.0" defer></script>
-    <script src="./app-admin.js?v=4.0" defer></script>
-    <script src="./app-session.js?v=4.0" defer></script>
-    <script src="./app-team.js?v=4.0" defer></script>
-    <script src="./app-events.js?v=4.0" defer></script>
-    <script src="./app-init.js?v=4.0" defer></script>
+    <script src="./app-core.js?v=4.2" defer></script>
+    <script src="./app-navigation.js?v=4.2" defer></script>
+    <script src="./app-admin.js?v=4.2" defer></script>
+    <script src="./app-session.js?v=4.2" defer></script>
+    <script src="./app-team.js?v=4.2" defer></script>
+    <script src="./app-events.js?v=4.2" defer></script>
+    <script src="./app-init.js?v=4.2" defer></script>
 </body></html>

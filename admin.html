@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -11,9 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans+Arabic:wght@400;500;700;900" /></noscript>
-    <link rel="stylesheet" href="./tailwind.css?v=4.0">
+    <link rel="stylesheet" href="./tailwind.css?v=4.2">
 
-    <link rel="stylesheet" href="./styles.css?v=4.0">
+    <link rel="stylesheet" href="./styles.css?v=4.2">
     <script>
         (function () {
             try {
@@ -102,6 +102,7 @@
                             <button id="admin-tab-users" class="admin-tab form-button bg-[#1978e5] text-slate-50">المستخدمون</button>
                             <button id="admin-tab-team" class="admin-tab form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300">إدارة الفريق</button>
                             <button id="admin-tab-events" class="admin-tab form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300">الفعاليات</button>
+                            <button id="admin-tab-home" class="admin-tab form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300">الرئيسية</button>
                         </div>
 
                         <div id="admin-users-panel">
@@ -142,6 +143,66 @@
                                 <div class="bg-white dark:bg-gray-800 rounded-xl border border-[#d4dbe2] dark:border-gray-700 overflow-hidden">
                                     <div id="admin-events-list" class="divide-y divide-[#d4dbe2] dark:divide-gray-700"></div>
                                     <div id="admin-events-empty-state" class="hidden-section text-center text-[#5c718a] py-8">لا توجد فعاليات.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="admin-home-panel" class="hidden-section">
+                            <div class="flex flex-wrap justify-between items-center gap-3 p-4">
+                                <p class="text-sm font-bold text-[#101418] dark:text-gray-100">قسم الرئيسية (الهيرو)</p>
+                                <p class="text-xs text-[#5c718a]">الصورة والنصوص والإعدادات التي تظهر أعلى الصفحة الرئيسية.</p>
+                            </div>
+                            <div class="p-4 pt-0">
+                                <div class="bg-white dark:bg-gray-800 rounded-xl border border-[#d4dbe2] dark:border-gray-700 p-5 flex flex-col gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5" for="admin-hero-title">العنوان الرئيسي</label>
+                                        <input id="admin-hero-title" type="text" class="form-input w-full rounded-xl text-[#101418] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] focus:ring-2 focus:ring-[#1978e5] h-11 px-4 text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5" for="admin-hero-subtitle">الوصف / العنوان الفرعي</label>
+                                        <textarea id="admin-hero-subtitle" rows="3" class="form-input w-full rounded-xl text-[#101418] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] focus:ring-2 focus:ring-[#1978e5] px-4 py-2.5 text-sm resize-none"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5" for="admin-hero-button-text">نص الزر</label>
+                                        <input id="admin-hero-button-text" type="text" class="form-input w-full rounded-xl text-[#101418] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] focus:ring-2 focus:ring-[#1978e5] h-11 px-4 text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5" for="admin-hero-button-link">وجهة الزر</label>
+                                        <select id="admin-hero-button-link" class="form-input w-full rounded-xl text-[#101418] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] focus:ring-2 focus:ring-[#1978e5] h-11 px-4 text-sm">
+                                            <option value="events">صفحة الفعاليات</option>
+                                            <option value="team">صفحة الأعضاء</option>
+                                            <option value="contact">اتصل بنا</option>
+                                            <option value="custom">رابط خارجي مخصص</option>
+                                        </select>
+                                    </div>
+                                    <div id="admin-hero-custom-url-wrap" class="hidden-section">
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5" for="admin-hero-button-url">الرابط المخصص (https://...)</label>
+                                        <input id="admin-hero-button-url" type="url" placeholder="https://example.com" class="form-input w-full rounded-xl text-[#101418] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] focus:ring-2 focus:ring-[#1978e5] h-11 px-4 text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5">صورة الخلفية</label>
+                                        <div class="flex flex-col sm:flex-row items-start gap-4">
+                                            <div id="admin-hero-image-preview" class="w-full sm:w-52 h-28 shrink-0 rounded-lg bg-cover bg-center bg-gray-100 dark:bg-gray-700 border border-[#d4dbe2] dark:border-gray-600 flex items-center justify-center text-xs text-[#5c718a]">لا توجد صورة</div>
+                                            <div class="flex-1 w-full flex flex-col gap-2.5">
+                                                <input id="admin-hero-image-file" type="file" accept="image/*" class="text-sm text-[#5c718a]">
+                                                <input id="admin-hero-image-url" type="text" placeholder="أو الصق رابط صورة https://..." class="form-input w-full rounded-xl text-[#101418] border border-[#d4dbe2] bg-gray-50 focus:border-[#1978e5] focus:ring-2 focus:ring-[#1978e5] h-11 px-4 text-sm">
+                                                <button id="admin-hero-image-remove" class="form-button self-start bg-[#eaedf1] text-[#101418] hover:bg-gray-300 h-9 px-4 text-xs font-bold">إزالة الصورة</button>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-[#5c718a] mt-2">بدون صورة تظهر الخلفية المتدرجة الافتراضية.</p>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5">تعتيم الخلفية: <span id="admin-hero-overlay-val" class="text-[#1978e5] font-bold">55</span>%</label>
+                                        <input id="admin-hero-overlay" type="range" min="0" max="90" step="5" value="55" class="w-full accent-[#1978e5]">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-[#101418] dark:text-gray-100 mb-1.5">ارتفاع القسم: <span id="admin-hero-height-val" class="text-[#1978e5] font-bold">480</span>px</label>
+                                        <input id="admin-hero-height" type="range" min="220" max="700" step="20" value="480" class="w-full accent-[#1978e5]">
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 pt-2 border-t border-[#e7edf3] dark:border-gray-700">
+                                        <button id="admin-hero-save" class="form-button bg-[#1978e5] text-slate-50 h-10 px-6 text-sm">حفظ الإعدادات</button>
+                                        <button id="admin-hero-reset" class="form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300 h-10 px-6 text-sm">استعادة الافتراضي</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -208,11 +269,11 @@
         </div>
     </div>
 
-    <script src="./app-core.js?v=4.0" defer></script>
-    <script src="./app-navigation.js?v=4.0" defer></script>
-    <script src="./app-admin.js?v=4.0" defer></script>
-    <script src="./app-session.js?v=4.0" defer></script>
-    <script src="./app-team.js?v=4.0" defer></script>
-    <script src="./app-events.js?v=4.0" defer></script>
-    <script src="./app-init.js?v=4.0" defer></script>
+    <script src="./app-core.js?v=4.2" defer></script>
+    <script src="./app-navigation.js?v=4.2" defer></script>
+    <script src="./app-admin.js?v=4.2" defer></script>
+    <script src="./app-session.js?v=4.2" defer></script>
+    <script src="./app-team.js?v=4.2" defer></script>
+    <script src="./app-events.js?v=4.2" defer></script>
+    <script src="./app-init.js?v=4.2" defer></script>
 </body></html>

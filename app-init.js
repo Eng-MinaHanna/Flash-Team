@@ -23,13 +23,20 @@
         }
 
         async function initializeAppAsync() {
-            seedCacheFromStorage();
-            updateAuthState(currentUser);
-            await restoreSession();
-            await updateAuthState(currentUser);
-            await initialNavigation();
-            initialAuthProcessed = true;
-            console.log("App initialized.");
+            try {
+                seedCacheFromStorage();
+                updateAuthState(currentUser);
+                await restoreSession();
+                await updateAuthState(currentUser);
+                await initialNavigation();
+                initialAuthProcessed = true;
+                loadHeroSettings().then(applyHeroSettings).catch(() => { });
+                console.log("App initialized.");
+            } catch (e) {
+                console.error("App initialization error:", e);
+            } finally {
+                hideStartupLoader();
+            }
         }
 
         // --- Background data cache & preloading (faster navigation) ---

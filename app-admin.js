@@ -738,34 +738,161 @@
             const usersPanel = document.getElementById('admin-users-panel');
             const teamPanel = document.getElementById('admin-team-panel');
             const eventsPanel = document.getElementById('admin-events-panel');
+            const homePanel = document.getElementById('admin-home-panel');
             const usersTab = document.getElementById('admin-tab-users');
             const teamTab = document.getElementById('admin-tab-team');
             const eventsTab = document.getElementById('admin-tab-events');
+            const homeTab = document.getElementById('admin-tab-home');
             const active = 'admin-tab form-button bg-[#1978e5] text-slate-50';
             const idle = 'admin-tab form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300';
             if (tab === 'team') {
                 if (usersPanel) usersPanel.classList.add('hidden-section');
                 if (eventsPanel) eventsPanel.classList.add('hidden-section');
+                if (homePanel) homePanel.classList.add('hidden-section');
                 if (teamPanel) teamPanel.classList.remove('hidden-section');
                 if (usersTab) usersTab.className = idle;
                 if (eventsTab) eventsTab.className = idle;
+                if (homeTab) homeTab.className = idle;
                 if (teamTab) teamTab.className = active;
                 loadAdminTeam();
             } else if (tab === 'events') {
                 if (usersPanel) usersPanel.classList.add('hidden-section');
                 if (teamPanel) teamPanel.classList.add('hidden-section');
+                if (homePanel) homePanel.classList.add('hidden-section');
                 if (eventsPanel) eventsPanel.classList.remove('hidden-section');
                 if (usersTab) usersTab.className = idle;
                 if (teamTab) teamTab.className = idle;
+                if (homeTab) homeTab.className = idle;
                 if (eventsTab) eventsTab.className = active;
                 loadAdminEvents();
+            } else if (tab === 'home') {
+                if (usersPanel) usersPanel.classList.add('hidden-section');
+                if (teamPanel) teamPanel.classList.add('hidden-section');
+                if (eventsPanel) eventsPanel.classList.add('hidden-section');
+                if (homePanel) homePanel.classList.remove('hidden-section');
+                if (usersTab) usersTab.className = idle;
+                if (teamTab) teamTab.className = idle;
+                if (eventsTab) eventsTab.className = idle;
+                if (homeTab) homeTab.className = active;
+                loadAdminHero();
             } else {
                 if (teamPanel) teamPanel.classList.add('hidden-section');
                 if (eventsPanel) eventsPanel.classList.add('hidden-section');
+                if (homePanel) homePanel.classList.add('hidden-section');
                 if (usersPanel) usersPanel.classList.remove('hidden-section');
                 if (teamTab) teamTab.className = idle;
                 if (eventsTab) eventsTab.className = idle;
+                if (homeTab) homeTab.className = idle;
                 if (usersTab) usersTab.className = active;
+            }
+        }
+
+        // -------------------------------------------------------------------
+        // Home / Hero settings tab
+        // -------------------------------------------------------------------
+
+        let _heroNewImageFile = null;
+
+        function updateHeroImagePreview(url) {
+            const preview = document.getElementById('admin-hero-image-preview');
+            if (!preview) return;
+            if (url && url.trim()) {
+                preview.style.backgroundImage = 'url("' + url.trim().replace(/"/g, '%22') + '")';
+                preview.textContent = '';
+            } else {
+                preview.style.backgroundImage = '';
+                preview.textContent = 'لا توجد صورة';
+            }
+        }
+
+        function fillAdminHeroForm(settings) {
+            const s = Object.assign({}, getDefaultHeroSettings(), settings || {});
+            const title = document.getElementById('admin-hero-title');
+            const subtitle = document.getElementById('admin-hero-subtitle');
+            const btnText = document.getElementById('admin-hero-button-text');
+            const btnLink = document.getElementById('admin-hero-button-link');
+            const btnUrl = document.getElementById('admin-hero-button-url');
+            const urlWrap = document.getElementById('admin-hero-custom-url-wrap');
+            const overlay = document.getElementById('admin-hero-overlay');
+            const overlayVal = document.getElementById('admin-hero-overlay-val');
+            const height = document.getElementById('admin-hero-height');
+            const heightVal = document.getElementById('admin-hero-height-val');
+            if (title) title.value = s.title || '';
+            if (subtitle) subtitle.value = s.subtitle || '';
+            if (btnText) btnText.value = s.button_text || '';
+            if (btnLink) btnLink.value = s.button_link || 'events';
+            if (btnUrl) btnUrl.value = s.button_url || '';
+            if (urlWrap) urlWrap.classList.toggle('hidden-section', (s.button_link || 'events') !== 'custom');
+            if (overlay) overlay.value = s.overlay;
+            if (overlayVal) overlayVal.textContent = s.overlay;
+            if (height) height.value = s.min_height;
+            if (heightVal) heightVal.textContent = s.min_height;
+            const urlInput = document.getElementById('admin-hero-image-url');
+            if (urlInput) urlInput.value = s.background_image || '';
+            _heroNewImageFile = null;
+            updateHeroImagePreview(s.background_image);
+        }
+
+        async function loadAdminHero() {
+            let settings;
+            try {
+                settings = await loadHeroSettings();
+            } catch (e) {
+                settings = getDefaultHeroSettings();
+            }
+            fillAdminHeroForm(settings);
+        }
+
+        function resetAdminHeroForm() {
+            fillAdminHeroForm(getDefaultHeroSettings());
+        }
+
+        async function saveAdminHero() {
+            const title = document.getElementById('admin-hero-title');
+            const subtitle = document.getElementById('admin-hero-subtitle');
+            const btnText = document.getElementById('admin-hero-button-text');
+            const btnLink = document.getElementById('admin-hero-button-link');
+            const btnUrl = document.getElementById('admin-hero-button-url');
+            const overlay = document.getElementById('admin-hero-overlay');
+            const height = document.getElementById('admin-hero-height');
+            const urlInput = document.getElementById('admin-hero-image-url');
+            if (!title || !btnText || !btnLink) return;
+            if (!title.value.trim() || !subtitle.value.trim() || !btnText.value.trim()) {
+                showModalMessage('العنوان والوصف ونص الزر مطلوبة.', true);
+                return;
+            }
+            if (btnLink.value === 'custom' && !(btnUrl && btnUrl.value.trim())) {
+                showModalMessage('أدخل الرابط المخصص أو اختر وجهة داخلية.', true);
+                return;
+            }
+            try {
+                let bg = urlInput ? urlInput.value.trim() : '';
+                if (_heroNewImageFile) {
+                    const dataUrl = await fileToBase64(_heroNewImageFile);
+                    const base64 = dataUrl.split(',')[1] || '';
+                    const result = await api('uploadImage', { base64, file_name: _heroNewImageFile.name, mime_type: _heroNewImageFile.type || 'image/jpeg', is_avatar: '0' });
+                    bg = result.url || bg;
+                    _heroNewImageFile = null;
+                }
+                const settings = {
+                    title: title.value.trim(),
+                    subtitle: subtitle.value.trim(),
+                    button_text: btnText.value.trim(),
+                    button_link: btnLink.value,
+                    button_url: btnLink.value === 'custom' ? (btnUrl ? btnUrl.value.trim() : '') : '',
+                    background_image: bg,
+                    overlay: Number(overlay ? overlay.value : 55),
+                    min_height: Number(height ? height.value : 480)
+                };
+                const result = await saveHeroSettings(settings);
+                applyHeroSettings(settings);
+                if (result.backend) {
+                    showModalMessage('تم حفظ إعدادات الرئيسية.');
+                } else {
+                    showModalMessage('تم الحفظ محلياً فقط (الباكند غير مفعّل): ' + (result.error || ''), true);
+                }
+            } catch (err) {
+                showModalMessage('فشل حفظ إعدادات الرئيسية: ' + err.message, true);
             }
         }
 
@@ -792,9 +919,54 @@
             const usersTab = document.getElementById('admin-tab-users');
             const teamTab = document.getElementById('admin-tab-team');
             const eventsTab = document.getElementById('admin-tab-events');
+            const homeTab = document.getElementById('admin-tab-home');
             if (usersTab) usersTab.addEventListener('click', () => switchAdminTab('users'));
             if (teamTab) teamTab.addEventListener('click', () => switchAdminTab('team'));
             if (eventsTab) eventsTab.addEventListener('click', () => switchAdminTab('events'));
+            if (homeTab) homeTab.addEventListener('click', () => switchAdminTab('home'));
+
+            const heroLinkSelect = document.getElementById('admin-hero-button-link');
+            if (heroLinkSelect) {
+                heroLinkSelect.addEventListener('change', () => {
+                    const wrap = document.getElementById('admin-hero-custom-url-wrap');
+                    if (wrap) wrap.classList.toggle('hidden-section', heroLinkSelect.value !== 'custom');
+                });
+            }
+            const heroOverlay = document.getElementById('admin-hero-overlay');
+            if (heroOverlay) heroOverlay.addEventListener('input', () => {
+                const val = document.getElementById('admin-hero-overlay-val');
+                if (val) val.textContent = heroOverlay.value;
+            });
+            const heroHeight = document.getElementById('admin-hero-height');
+            if (heroHeight) heroHeight.addEventListener('input', () => {
+                const val = document.getElementById('admin-hero-height-val');
+                if (val) val.textContent = heroHeight.value;
+            });
+            const heroFile = document.getElementById('admin-hero-image-file');
+            if (heroFile) heroFile.addEventListener('change', () => {
+                const file = heroFile.files && heroFile.files[0];
+                if (!file) return;
+                _heroNewImageFile = file;
+                const previewUrl = URL.createObjectURL(file);
+                updateHeroImagePreview(previewUrl);
+            });
+            const heroUrl = document.getElementById('admin-hero-image-url');
+            if (heroUrl) heroUrl.addEventListener('input', () => {
+                _heroNewImageFile = null;
+                if (heroFile) heroFile.value = '';
+                updateHeroImagePreview(heroUrl.value);
+            });
+            const heroRemove = document.getElementById('admin-hero-image-remove');
+            if (heroRemove) heroRemove.addEventListener('click', () => {
+                _heroNewImageFile = null;
+                if (heroFile) heroFile.value = '';
+                if (heroUrl) heroUrl.value = '';
+                updateHeroImagePreview('');
+            });
+            const heroSave = document.getElementById('admin-hero-save');
+            if (heroSave) heroSave.addEventListener('click', () => saveAdminHero());
+            const heroReset = document.getElementById('admin-hero-reset');
+            if (heroReset) heroReset.addEventListener('click', () => resetAdminHeroForm());
 
             const addMemberBtn = document.getElementById('admin-add-team-btn');
             if (addMemberBtn) addMemberBtn.addEventListener('click', () => openAdminTeamModal(null));

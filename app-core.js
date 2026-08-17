@@ -39,6 +39,9 @@
                 container = document.createElement('div');
                 container.id = 'toast-container';
                 container.className = 'fixed top-4 left-1/2 -translate-x-1/2 z-[1001] flex flex-col items-center gap-2 px-4 pointer-events-none';
+                container.setAttribute('role', 'status');
+                container.setAttribute('aria-live', 'polite');
+                container.setAttribute('aria-atomic', 'false');
                 document.body.appendChild(container);
             }
             const toast = document.createElement('div');
@@ -571,3 +574,57 @@
         const formButtonStyles = "flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 text-base font-bold leading-normal tracking-[0.015em] transition-colors";
         document.querySelectorAll('.input-field').forEach(el => el.className = inputFieldStyles);
         document.querySelectorAll('.form-button').forEach(el => el.className = `${formButtonStyles} ${el.className}`);
+
+        // --- Pagination helper ---
+        // Add data-paginate="N" to a container to auto-paginate its direct children.
+        function initPaginationFor(container) {
+            if (container._paginationInit) return;
+            const pageSize = parseInt(container.dataset.paginate, 10) || 12;
+            const items = Array.from(container.children).filter(el => el.tagName !== 'BUTTON');
+            if (items.length <= pageSize) return;
+            container._paginationInit = true;
+            items.forEach((el, i) => { if (i >= pageSize) el.style.display = 'none'; });
+            const btn = document.createElement('button');
+            btn.className = 'form-button bg-[#1978e5] text-slate-50 w-full mt-6 py-3';
+            btn.textContent = 'عرض المزيد (' + Math.min(pageSize, items.length - pageSize) + ' من أصل ' + items.length + ')';
+            btn.setAttribute('aria-label', 'عرض المزيد من العناصر');
+            let shown = pageSize;
+            btn.addEventListener('click', () => {
+                const next = Math.min(shown + pageSize, items.length);
+                for (let i = shown; i < next; i++) items[i].style.display = '';
+                shown = next;
+                btn.textContent = shown >= items.length ? 'تم عرض الكل' : 'عرض المزيد (' + Math.min(pageSize, items.length - shown) + ' من أصل ' + items.length + ')';
+                if (shown >= items.length) { btn.disabled = true; btn.classList.add('opacity-50'); }
+            });
+            container.appendChild(btn);
+        }
+
+        // --- Search filter helper ---
+        // Add data-search="inputSelector" to a container to filter its children.
+        function initSearchFor(container) {
+            if (container._searchInit) return;
+            const input = document.querySelector(container.dataset.search);
+            if (!input) return;
+            container._searchInit = true;
+            input.addEventListener('input', () => {
+                const q = input.value.trim().toLowerCase();
+                Array.from(container.children).forEach(el => {
+                    if (el.tagName === 'BUTTON') return;
+                    const text = (el.textContent || '').toLowerCase();
+                    el.style.display = (!q || text.includes(q)) ? '' : 'none';
+                });
+            });
+        }
+
+        function initInteractiveContainers() {
+            document.querySelectorAll('[data-paginate]').forEach(initPaginationFor);
+            document.querySelectorAll('[data-search]').forEach(initSearchFor);
+        }
+
+        document.addEventListener('DOMContentLoaded', initInteractiveContainers);
+
+        const _interactiveObserver = new MutationObserver(() => {
+            document.querySelectorAll('[data-paginate]').forEach(c => { if (!c._paginationInit) initPaginationFor(c); });
+            document.querySelectorAll('[data-search]').forEach(c => { if (!c._searchInit) initSearchFor(c); });
+        });
+        _interactiveObserver.observe(document.body, { childList: true, subtree: true });

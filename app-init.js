@@ -1,3 +1,14 @@
+
+        // --- Global Error Boundary ---
+        window.addEventListener('error', function (e) {
+            console.error('Uncaught error:', e.message, e.filename, e.lineno);
+            if (typeof showToast === 'function') showToast('حدث خطأ غير متوقع. يرجى تحديث الصفحة.', 'error');
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            if (typeof showToast === 'function') showToast('حدث خطأ في الاتصال. تحقق من الإنترنت وأعد المحاولة.', 'error');
+        });
+
         const themeToggleButton = document.getElementById('theme-toggle-button');
         const darkIcon = document.getElementById('theme-toggle-dark-icon');
         const lightIcon = document.getElementById('theme-toggle-light-icon');

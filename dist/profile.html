@@ -3,22 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فعاليات المشروع - فريق Flash | الإبداع الهندسي وابتكار الحلول</title>
-    <meta name="description" content="فعاليات فريق Flash - مشروع تخرج. تعرف على الفعاليات القادمة والسابقة وفعاليات الفريق الهندسي.">
-    <meta name="keywords" content="فريق Flash, فعاليات, مشروع تخرج, هندسة, توزيع كهرباء, ابتكار">
-    <meta name="author" content="Flash Team">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: https://placehold.co https://drive.google.com https://drive.usercontent.google.com https://*.googleusercontent.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src 'self'; object-src 'none'; base-uri 'self'">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_EG">
-    <meta property="og:site_name" content="فريق Flash">
-    <meta property="og:title" content="فعاليات المشروع - فريق Flash">
-    <meta property="og:description" content="تعرف على فعاليات فريق Flash القادمة والسابقة.">
-    <meta property="og:image" content="./flash-logo.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="فعاليات المشروع - فريق Flash">
-    <meta name="twitter:description" content="تعرف على فعاليات فريق Flash القادمة والسابقة.">
-    <meta name="twitter:image" content="./flash-logo.png">
+    <title>ملفي الشخصي - فريق Flash</title>
+    <meta name="description" content="تحديث ملفك الشخصي في فريق Flash.">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="icon" href="./flash-logo.png">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -36,16 +23,8 @@
             } catch (e) {}
         })();
     </script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function () {
-                    navigator.serviceWorker.register('./sw.js').catch(function () {});
-                });
-            }
-        </script>
 </head>
 <body class="bg-slate-50">
-    <a class="skip-to-content" href="#main-content">انتقل للمحتوى الرئيسي</a>
     <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
             <header class="site-header flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-4 sm:px-10 py-3 bg-white shadow-sm">
@@ -103,95 +82,48 @@
             </div>
 
 
-            <main id="main-content" class="flex-1" tabindex="-1">
-                <section id="events" class="content-section px-5 md:px-20 lg:px-40 py-5">
-                    <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
-                        <div class="flex flex-wrap justify-between items-center gap-3 p-4">
-                            <p class="text-[#101418] tracking-light text-2xl sm:text-[32px] font-bold leading-tight min-w-72">فعاليات المشروع</p>
-                            <button id="create-event-btn" class="form-button bg-[#eaedf1] text-[#101418] hover:bg-gray-300 hidden-section"> <span class="truncate">إنشاء فعالية</span>
-                            </button>
-                        </div>
-
-                        <div id="create-event-form-container" class="hidden-section p-6 bg-white rounded-lg shadow mb-8">
-                            <h2 id="event-form-title" class="text-[#101418] text-2xl font-bold mb-4">إنشاء فعالية جديدة</h2>
-
-                            <div id="event-images-preview-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mb-4">
-                                </div>
-                            <div class="mb-4">
-                                <label for="event-image-files" class="block text-sm font-medium text-gray-700">ملفات الفعالية (حتى 10 ملفات)</label>
-                                <input type="file" id="event-image-files" name="imageFiles" multiple class="input-field mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1978e5] hover:file:bg-blue-100">
-                                <p class="text-xs text-gray-500 mt-1">اختر صورة واحدة لتكون الصورة الرئيسية للفعالية من خلال النقر عليها في المعاينة.</p>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="event-attachment-files" class="block text-sm font-medium text-gray-700">مرفقات الفعالية (فيديو / PDF / DWG) — حتى 10 مرفقات</label>
-                                <input type="file" id="event-attachment-files" multiple accept="video/*,.pdf,.dwg,.mp4,.webm,.mov,.avi,.mkv" class="input-field mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1978e5] hover:file:bg-blue-100">
-                                <p class="text-xs text-gray-500 mt-1">الفيديو يُشغَّل داخل الصفحة، والملفات PDF تُعرض بمعاينة مدمجة، وملفات DWG تظهر كزر تحميل. الملفات الكبيرة تُرفع على دفعات وقد يستغرق الرفع بعض الوقت.</p>
-                                <div id="event-attachments-preview" class="flex flex-col gap-2 mt-2"></div>
-                                <div id="event-attachments-progress" class="hidden-section mt-2"></div>
-                            </div>
-
-                            <form id="create-event-form" class="space-y-4">
-                                <div>
-                                    <label for="event-title" class="block text-sm font-medium text-gray-700">عنوان الفعالية</label>
-                                    <input type="text" id="event-title" name="title" required class="input-field mt-1 block w-full">
+            <main class="flex-1">
+                <section id="my-profile-section" class="content-section px-5 md:px-20 lg:px-40 py-5">
+                     <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
+                        <div id="current-user-profile-form-container" class="mb-8 p-6 bg-white rounded-lg shadow">
+                            <h3 class="text-[#101418] text-xl font-bold leading-tight tracking-[-0.015em] mb-4">تحديث ملفك الشخصي</h3>
+                            <form id="update-profile-form" class="space-y-4">
+                                <div class="flex justify-center mb-4">
+                                     <img id="update-avatar-preview" src="https://placehold.co/100x100/E0E0E0/B0B0B0?text=Avatar" alt="Avatar Preview" class="avatar-preview" data-placeholder="https://placehold.co/100x100/E0E0E0/B0B0B0?text=Avatar">
                                 </div>
                                 <div>
-                                    <label for="event-description" class="block text-sm font-medium text-gray-700">وصف الفعالية</label>
-                                    <textarea id="event-description" name="description" rows="3" required class="input-field mt-1 block w-full"></textarea>
+                                    <label for="update-avatar-file" class="block text-sm font-medium text-gray-700">الصورة الرمزية (ملف صورة)</label>
+                                    <input type="file" id="update-avatar-file" name="avatarFile" accept="image/*" class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1978e5] hover:file:bg-blue-100">
                                 </div>
                                 <div>
-                                    <label for="event-date" class="block text-sm font-medium text-gray-700">تاريخ الفعالية</label>
-                                    <input type="date" id="event-date" name="event_date" required class="input-field mt-1 block w-full">
+                                    <label for="update-full-name" class="block text-sm font-medium text-gray-700">الاسم الكامل</label>
+                                    <input type="text" id="update-full-name" name="fullName" class="input-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 </div>
-                                <div class="flex gap-4">
-                                    <button type="submit" id="submit-event-form-btn" class="form-button flex-1 bg-[#1978e5] text-slate-50 hover:bg-blue-700">إنشاء</button>
-                                    <button type="button" id="cancel-create-event-btn" class="form-button flex-1 bg-gray-300 text-gray-700 hover:bg-gray-400">إلغاء</button>
+                                <div>
+                                    <label for="update-user-name" class="block text-sm font-medium text-gray-700">اسم المستخدم</label>
+                                    <input type="text" id="update-user-name" name="userName" class="input-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 </div>
-                            </form>
-                        </div>
-
-                        <h2 class="text-[#101418] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">الفعاليات القادمة</h2>
-                        <div class="px-4 pb-3">
-                            <input type="search" id="events-search" placeholder="بحث في الفعاليات..." class="form-input w-full rounded-xl border border-[#d4dbe2] bg-gray-50 px-4 py-3 text-sm">
-                        </div>
-                        <div id="upcoming-events-list" data-search="#events-search" data-paginate="8" class="p-4 space-y-6">
-                            <div class="text-center p-4 text-gray-500 col-span-full">جاري تحميل الفعاليات القادمة...</div>
-                        </div>
-
-                        <h2 class="text-[#101418] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">الفعاليات السابقة</h2>
-                        <div id="past-events-list" data-paginate="8" class="p-4 space-y-6">
-                            <div class="text-center p-4 text-gray-500 col-span-full">جاري تحميل الفعاليات السابقة...</div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="event-details" class="content-section hidden-section px-5 md:px-20 lg:px-40 py-5">
-                    <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
-                        <div class="flex flex-wrap gap-2 p-4">
-                            <a href="#" class="nav-link text-[#4e7097] text-base font-medium leading-normal" data-target="events">الفعاليات</a>
-                            <span class="text-[#4e7097] text-base font-medium leading-normal">/</span>
-                            <span id="event-details-breadcrumb" class="text-[#0e141b] text-base font-medium leading-normal">تفاصيل الفعالية</span>
-                        </div>
-                        <div id="event-details-content" class="bg-white p-6 rounded-lg shadow-md">
-                            <img id="event-details-main-image" src="https://placehold.co/800x400/64748B/E0E7FF?text=Event+Image" alt="صورة الفعالية الرئيسية" class="w-full h-auto object-cover rounded-lg mb-6 shadow">
-                            <div id="event-details-gallery" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 mb-4">
+                                <div>
+                                    <label for="update-academic-id" class="block text-sm font-medium text-gray-700">الرقم الأكاديمي</label>
+                                    <input type="text" id="update-academic-id" name="academicId" class="input-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 </div>
-                            <div id="event-details-attachments" class="mb-4">
+                                <div>
+                                    <label for="update-linkedin" class="block text-sm font-medium text-gray-700">رابط LinkedIn</label>
+                                    <input type="url" id="update-linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/..." class="input-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 </div>
-                            <div class="text-center p-4 text-gray-500">جاري تحميل تفاصيل الفعالية...</div>
-                        </div>
-
-                        <h2 class="text-[#0e141b] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">التعليقات</h2>
-                        <div id="event-comments-list" class="space-y-4 p-4 bg-white rounded-lg shadow-md mt-4">
-                            <div class="text-center p-4 text-gray-500">جاري تحميل التعليقات...</div>
-                        </div>
-
-                        <div id="add-comment-form-container" class="mt-6 p-4 bg-white rounded-lg shadow-md">
-                            <form id="add-comment-form" class="flex items-start gap-3">
-                                <img id="commenter-avatar" src="https://placehold.co/40x40/E0E0E0/B0B0B0?text=User" alt="User Avatar" class="size-10 rounded-full shrink-0 object-cover" data-placeholder="https://placehold.co/40x40/E0E0E0/B0B0B0?text=User">
-                                <textarea id="comment-text" placeholder="أضف تعليقاً..." required class="form-input flex-1 resize-none rounded-lg border-gray-300 focus:ring-[#1978e5] focus:border-[#1978e5] p-3 text-base" rows="3"></textarea>
-                                <button type="submit" class="form-button self-end bg-[#1978e5] text-slate-50 h-12 px-6">نشر</button>
+                                <div>
+                                    <label for="update-facebook" class="block text-sm font-medium text-gray-700">رابط Facebook</label>
+                                    <input type="url" id="update-facebook" name="facebook" placeholder="https://www.facebook.com/..." class="input-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                </div>
+                                <div>
+                                    <label for="update-phone" class="block text-sm font-medium text-gray-700">رقم الهاتف (واتساب)</label>
+                                    <input type="tel" id="update-phone" name="phone" placeholder="+20..." class="input-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">الدور</label>
+                                    <p id="update-profile-role-display" class="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 text-gray-700"></p>
+                                </div>
+                                <button type="submit" class="form-button w-full bg-[#1978e5] text-slate-50 hover:bg-blue-700">تحديث الملف الشخصي</button>
                             </form>
                         </div>
                     </div>

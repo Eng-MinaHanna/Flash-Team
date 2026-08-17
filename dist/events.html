@@ -36,16 +36,8 @@
             } catch (e) {}
         })();
     </script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function () {
-                    navigator.serviceWorker.register('./sw.js').catch(function () {});
-                });
-            }
-        </script>
 </head>
 <body class="bg-slate-50">
-    <a class="skip-to-content" href="#main-content">انتقل للمحتوى الرئيسي</a>
     <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
             <header class="site-header flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-4 sm:px-10 py-3 bg-white shadow-sm">
@@ -103,7 +95,7 @@
             </div>
 
 
-            <main id="main-content" class="flex-1" tabindex="-1">
+            <main class="flex-1">
                 <section id="events" class="content-section px-5 md:px-20 lg:px-40 py-5">
                     <div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
                         <div class="flex flex-wrap justify-between items-center gap-3 p-4">
@@ -152,15 +144,12 @@
                         </div>
 
                         <h2 class="text-[#101418] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">الفعاليات القادمة</h2>
-                        <div class="px-4 pb-3">
-                            <input type="search" id="events-search" placeholder="بحث في الفعاليات..." class="form-input w-full rounded-xl border border-[#d4dbe2] bg-gray-50 px-4 py-3 text-sm">
-                        </div>
-                        <div id="upcoming-events-list" data-search="#events-search" data-paginate="8" class="p-4 space-y-6">
+                        <div id="upcoming-events-list" class="p-4 space-y-6">
                             <div class="text-center p-4 text-gray-500 col-span-full">جاري تحميل الفعاليات القادمة...</div>
                         </div>
 
                         <h2 class="text-[#101418] text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">الفعاليات السابقة</h2>
-                        <div id="past-events-list" data-paginate="8" class="p-4 space-y-6">
+                        <div id="past-events-list" class="p-4 space-y-6">
                             <div class="text-center p-4 text-gray-500 col-span-full">جاري تحميل الفعاليات السابقة...</div>
                         </div>
                     </div>
